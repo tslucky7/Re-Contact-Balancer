@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('inquiries', function (Blueprint $table) {
             $table->id();
+            $table->ulid('request_id')->unique();
+            $table->string('name');
+            $table->string('email');
+            $table->string('subject');
+            $table->text('message');
+            $table->string('status', 32)->default('pending');
+            $table->unsignedBigInteger('backlog_issue_id')->nullable();
+            $table->string('backlog_issue_key', 64)->nullable();
+            $table->text('error_message')->nullable();
             $table->timestamps();
         });
     }
