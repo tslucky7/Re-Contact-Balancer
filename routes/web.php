@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\InquiryController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
+
+Route::post('inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', function () {
